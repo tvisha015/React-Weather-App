@@ -7,32 +7,17 @@ class WeatherAPI {
             appid : API_CONFIG.API_KEY,
             ...params,
         })
-        // return `${endpoint}?${searchParams.toString()}`;
-        const fullUrl = `${endpoint}?${searchParams.toString()}`;
-        console.log("📡 API Request URL:", fullUrl); 
-        return fullUrl;
+        return `${endpoint}?${searchParams.toString()}`;
     }
     
     private async fetchData<T>(url:string): Promise<T> {
-        // const response = await fetch(url);
-        // console.log(response)
-        // if(!response.ok){
-        //     throw new Error(`Weather API Error : ${response.statusText}`)
-        // }
-
-        // return response.json();
-        console.log("🚀 Fetching data from:", url);
         const response = await fetch(url);
-        console.log("🔄 Raw Response:", response);
-
-        if (!response.ok) {
-            console.error("❌ API Error:", response.statusText);
-            throw new Error(`Weather API Error: ${response.statusText}`);
+        console.log(response)
+        if(!response.ok){
+            throw new Error(`Weather API Error : ${response.statusText}`)
         }
 
-        const data = await response.json();
-        console.log("📦 Parsed JSON Data:", data); // ✅ Logs parsed JSON data
-        return data;
+        return response.json();
     }
     
     async getCurrentWeather({lat, lon}: Coordinates): Promise<WeatherData>{

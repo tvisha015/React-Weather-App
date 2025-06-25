@@ -9,23 +9,10 @@ import {
   QueryClientProvider,
 } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
-//test
-import { weatherAPI } from './api/weather.ts';
 
 const queryClient = new QueryClient()
 const App = () => {
-   useEffect(() => {
-    const fetchWeather = async () => {
-      try {
-        const data = await weatherAPI.getCurrentWeather({ lat: 22.3, lon: 70.8 });
-        console.log("🌤️ Current Weather:", data);
-      } catch (error) {
-        console.error("❌ Error getting weather:", error);
-      }
-    };
 
-    fetchWeather();
-  }, []);
   QueryClientProvider
   return (
     <QueryClientProvider client={queryClient}>
@@ -40,7 +27,6 @@ const App = () => {
         </ThemeProvider>
       </BrowserRouter>
       <ReactQueryDevtools initialIsOpen={false} />
-      <h1>Check console for weather info</h1>
     </QueryClientProvider>
   )
 }
