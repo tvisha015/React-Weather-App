@@ -1,6 +1,8 @@
+import CurrentWeather from '@/components/current-weather';
 import WeatherSkeleton from '@/components/loading-skeleton';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button'
+import HourlyTemperature from '@/components/ui/hourly-temperature';
 import { useGeolocation } from '@/hooks/useGeolocation';
 import { useForecastQuery, useReverseGeocodeQuery, useWeatherQuery } from '@/hooks/useWeather';
 import { AlertTriangle, MapPin, RefreshCw } from 'lucide-react'
@@ -59,6 +61,8 @@ const WeatherDashboard = () => {
   }
 
   const locationName = locationQuery.data?.[0];
+  // const locationName = locationQuery.data?.name;
+
   if(weatherQuery.error || forecastQuery.error){
     return(
       <Alert variant="destructive">
@@ -90,7 +94,17 @@ const WeatherDashboard = () => {
           <RefreshCw className={`h-4 w-4 ${weatherQuery.isFetching ? "animate-spin" : ""}`}/>
         </Button>
       </div>
-      {/* Current and Hourly weather */}
+      
+      <div className='grid gap-6'>
+        <div className='flex flex-col lg:flex-row gap-4'>
+          <CurrentWeather data={weatherQuery.data} locationName={locationName}/>
+          <HourlyTemperature data={forecastQuery.data}/>
+        </div>
+        <div>
+          {/* detailes
+          forecast */}
+        </div>
+      </div>
     </div>
   )
 }
