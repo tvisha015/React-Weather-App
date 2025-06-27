@@ -51,11 +51,11 @@ const WeatherDetails = ({data}: WeatherDetailsProps) => {
         <CardTitle>Weather Details</CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="grid gap-6 sm:grid-cols-2">
+        <div className="grid gap-6 sm:grid-cols-2 ">
           {details.map((detail) => (
             <div
               key={detail.title}
-              className="flex items-center gap-3 rounded-lg border p-4"
+              className="flex items-center gap-3 rounded-lg border p-4 border-gray-200 bg-white dark:bg-black "
             >
               <detail.icon className={`h-5 w-5 ${detail.color}`} />
               <div>
