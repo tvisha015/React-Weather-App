@@ -63,8 +63,6 @@ const WeatherDashboard = () => {
   }
 
   const locationName = locationQuery.data?.[0];
-  // const locationName = locationQuery.data?.name;
-  console.log("locationName : ", locationName)
 
   if(weatherQuery.error || forecastQuery.error){
     return(
@@ -91,7 +89,7 @@ const WeatherDashboard = () => {
       <FavoriteCities/>
       <div className='flex items-center justify-between'>
         <h1 className='text-xl font-bold tracking-tight'>My Location</h1>
-        <Button variant={"outline"} size={"icon"}
+        <Button className='mb-3' variant={"outline"} size={"icon"}
         onClick={handleRefresh}
         disabled={weatherQuery.isFetching || forecastQuery.isFetching}
         >
