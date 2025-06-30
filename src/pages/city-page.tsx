@@ -8,6 +8,8 @@ import WeatherDetails from "../components/weather-details";
 import { WeatherForecast } from "../components/weather-forecast";
 import WeatherSkeleton from "../components/loading-skeleton";
 import { FavoriteButton } from "@/components/ui/favourite-button";
+import { useNavigate } from "react-router-dom";
+import { Home } from "lucide-react";
 
 export function CityPage() {
   const [searchParams] = useSearchParams();
@@ -19,6 +21,7 @@ export function CityPage() {
 
   const weatherQuery = useWeatherQuery(coordinates);
   const forecastQuery = useForecastQuery(coordinates);
+  const navigate = useNavigate();
 
   if (weatherQuery.error || forecastQuery.error) {
     return (
@@ -37,8 +40,16 @@ export function CityPage() {
 
   return (
     <div className="space-y-6">
+      <button
+        onClick={() => navigate("/")}
+        className="left-4 p-2 rounded-full bg-muted hover:bg-muted/80 shadow transition"
+        title="Go back to dashboard"
+      >
+        <Home className="h-5 w-5 text-primary" />
+      </button>
+
       <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold tracking-tight">
+        <h1 className="text-3xl font-bold tracking-tight mt-3">
           {params.cityName}, {weatherQuery.data.sys.country}
         </h1>
         <div className="flex gap-2">

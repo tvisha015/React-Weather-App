@@ -66,7 +66,7 @@ const layout = ({children}: PropsWithChildren) => {
 
       {/* GitHub */}
       <a 
-        href="https://github.com/your-username" 
+        href="https://github.com/tvisha015" 
         target="_blank" 
         rel="noopener noreferrer"
         className="hover:text-neutral-500 transition-colors"
